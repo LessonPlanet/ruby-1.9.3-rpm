@@ -1,5 +1,5 @@
 %define rubyver         1.9.3
-%define rubyminorver    p125
+%define rubyminorver    p448
 
 Name:           ruby
 Version:        %{rubyver}%{rubyminorver}
@@ -7,7 +7,7 @@ Release:        1%{?dist}
 License:        Ruby License/GPL - see COPYING
 URL:            http://www.ruby-lang.org/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  readline libyaml libyaml-devel readline-devel ncurses ncurses-devel gdbm gdbm-devel glibc-devel tcl-devel gcc unzip openssl-devel db4-devel byacc make
+BuildRequires:  readline libyaml libyaml-devel readline-devel ncurses ncurses-devel gdbm gdbm-devel glibc-devel tcl-devel gcc unzip openssl-devel db4-devel byacc make libffi-devel
 Requires:       libyaml
 Source0:        ftp://ftp.ruby-lang.org/pub/ruby/ruby-%{rubyver}-%{rubyminorver}.tar.gz
 Summary:        An interpreter of object-oriented scripting language
@@ -61,7 +61,29 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}
 %{_datadir}
 %{_libdir}
+%doc %{_mandir}/man1/erb.1.gz
+%doc %{_mandir}/man1/irb.1.gz
+%doc %{_mandir}/man1/rake.1.gz
+%doc %{_mandir}/man1/ri.1.gz
+%doc %{_mandir}/man1/ruby.1.gz
+
 
 %changelog
+* Thu Sep 19 2013 Daniel Haskin <djhaskin987@gmail.com> - 1.9.3-p448
+- Added man pages entries
+* Thu Jun 27 2013 Henrik <henrik@haf.se> - 1.9.3-p448
+- Update for Ruby 1.9.3-p448 release.
+* Thu May 23 2013 Attila Bogár <attila@fidescreativa.com> - 1.9.3-p429
+- Update for Ruby 1.9.3-p429 release.
+* Tue Apr 23 2013 Aleks Bunin <sbunin@gmail.com> - 1.9.3-p392
+- Update for Ruby 1.9.3-p392 release.
+* Thu Feb 14 2013 Martin Bokman <martin@bokman.org> - 1.9.3-p385
+- Update for Ruby 1.9.3-p385 release.
+* Tue Feb 5 2013 Ian Meyer <ianmmeyer@gmail.com> - 1.9.3-p374
+- Update for Ruby 1.9.3-p327 release.
+* Sun Nov 25 2012 Gareth Jones <me@gazj.co.uk> - 1.9.3-p327
+- Update for Ruby 1.9.3-p327 release.
+* Wed Apr 25 2012 mathew <meta@pobox.com> - 1.9.3-p194-1
+- Update for Ruby 1.9.3-p194 release.
 * Sat Feb 24 2012 Ian Meyer <ianmmeyer@gmail.com> - 1.9.3-p125-1
 - Spec to replace system ruby with 1.9.3-p125

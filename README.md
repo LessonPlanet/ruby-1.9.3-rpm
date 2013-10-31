@@ -6,17 +6,24 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
 
 #### RHEL/CentOS 5/6
 
-    yum install -y rpm-build rpmdevtools readline-devel ncurses-devel gdbm-devel tcl-devel openssl-devel db4-devel byacc libyaml-devel
+    yum install -y rpm-build rpmdevtools readline-devel ncurses-devel gdbm-devel tcl-devel openssl-devel db4-devel byacc libyaml-devel libffi-devel make
     rpmdev-setuptree
     cd ~/rpmbuild/SOURCES
-    wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p125.tar.gz
+    wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p448.tar.gz
     cd ~/rpmbuild/SPECS
     wget https://raw.github.com/imeyer/ruby-1.9.3-rpm/master/ruby19.spec
     rpmbuild -bb ruby19.spec
     ARCH=`uname -m`
-    rpm -Uvh ~/rpmbuild/RPMS/${ARCH}/ruby-1.9.3p125-1.ruby-1.9.3p125-1.${ARCH}.rpm
+    KERNEL_REL=`uname -r`
+    KERNEL_TMP=${KERNEL_REL%.$ARCH}
+    DISTRIB=${KERNEL_TMP##*.}
+    yum localinstall ~/rpmbuild/RPMS/${ARCH}/ruby-1.9.3p448-1.${DISTRIB}.${ARCH}.rpm
 
 **PROFIT!**
+
+If you are having trouble on the last line because of installed rubies, then run:
+
+`yum remove ruby-* puppet facter`
 
 ### What it does
 
@@ -42,6 +49,7 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
 Tested working (as sane as I could test for) on:
 
 * CentOS 5.x x86_64
+* CentOS 6.3 (Final)
 
 ### Personal thoughts
 
